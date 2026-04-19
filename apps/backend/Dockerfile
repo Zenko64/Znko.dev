@@ -7,6 +7,7 @@ RUN apt-get update \
 
 COPY package.json bun.lock ./
 COPY apps/backend/package.json ./apps/backend/package.json
+COPY apps/web/package.json ./apps/web/package.json
 COPY packages/consts/package.json ./packages/consts/package.json
 COPY packages/types/package.json ./packages/types/package.json
 
