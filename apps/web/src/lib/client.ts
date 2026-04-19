@@ -1,5 +1,5 @@
 import { hc } from "hono/client";
-import type { AppType } from "@/../../backend/src/core/server";
+import type { AppType } from "../../../backend/src/core/server";
 export async function assertOk(res: Response) {
   if (res.ok) return;
   if (res.headers.get("content-type")?.includes("application/json")) {

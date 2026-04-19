@@ -13,6 +13,7 @@ RUN bun install --frozen-lockfile
 
 # Workspace source needed by vite to bundle.
 COPY apps/web ./apps/web
+COPY apps/backend/src ./apps/backend/src
 COPY packages ./packages
 
 WORKDIR /app/apps/web
