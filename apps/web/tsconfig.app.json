@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client", "bun-types"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "#core/*": ["../backend/src/core/*.ts"],
+      "#db/*": ["../backend/src/db/*.ts"],
+      "#services/*": ["../backend/src/services/*.ts"],
+      "#controllers/*": ["../backend/src/controllers/*.ts"],
+      "#routes/*": ["../backend/src/routes/*.ts"],
+      "#middleware/*": ["../backend/src/middleware/*.ts"],
+      "#security/*": ["../backend/src/security/*.ts"],
+      "#types/*": ["../backend/src/types/*.ts"],
+      "#functions/*": ["../backend/src/functions/*.ts"],
+      "#/*": ["../backend/src/*"]
+    }
+  },
+  "include": ["src"]
+}

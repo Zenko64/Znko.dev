@@ -1,0 +1,29 @@
+# Skip everything that bloats the build context or leaks secrets.
+**/node_modules
+**/dist
+**/.turbo
+**/.vite
+**/*.tsbuildinfo
+
+# Local env files (image reads env at runtime via docker-compose).
+.env
+.env.*
+!.env.example
+
+# Local on-disk state — backend data lives in a named volume in compose.
+apps/backend/data
+apps/backend/uploads
+
+# VCS + IDE noise.
+.git
+.gitignore
+.github
+.vscode
+.idea
+
+# Build/CI artifacts.
+graphify-out
+postman
+*.log
+**/*.md
+!README.md

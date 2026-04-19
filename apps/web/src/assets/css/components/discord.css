@@ -1,0 +1,55 @@
+.activity-card-body {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.activity-img {
+  aspect-ratio: 1 / 1;
+  height: 10em;
+  width: auto;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.activity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-badge {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.activity-progress {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.activity-progress-bar {
+  height: 3px;
+  width: 100%;
+  border-radius: 9999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+
+.activity-progress-fill {
+  height: 100%;
+  background: var(--foreground);
+  border-radius: 9999px;
+  transition: width 1s linear;
+}
+
+.activity-progress-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+}

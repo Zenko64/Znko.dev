@@ -1,0 +1,53 @@
+{
+  "name": "znko",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "bun@1.0.0",
+  "license": "AGPL-3.0-only",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "db:generate": "bun run --cwd=apps/backend db:generate",
+    "db:migrate": "bun run --cwd=apps/backend db:migrate",
+    "db:push": "bun run --cwd=apps/backend db:push"
+  },
+  "devDependencies": {
+    "@types/slug": "^5.0.9",
+    "shadcn": "^4.1.2",
+    "turbo": "^2.9.3",
+    "bun-types": "^1.3.11"
+  },
+  "overrides": {
+    "vite": "^8.0.0-beta.13"
+  },
+  "dependencies": {
+    "@tiptap/extension-link": "^3.22.0",
+    "@tiptap/extension-placeholder": "^3.22.0",
+    "@tiptap/extension-task-item": "^3.22.0",
+    "@tiptap/extension-task-list": "^3.22.0",
+    "@tiptap/extension-text-align": "^3.22.0",
+    "@tiptap/pm": "^3.22.0",
+    "@tiptap/react": "^3.22.0",
+    "@tiptap/starter-kit": "^3.22.0",
+    "@ts-ffmpeg/fluent-ffmpeg": "^2.2.6",
+    "axios": "^1.15.0",
+    "bunqueue": "^2.7.4",
+    "file-type": "^21.3.4",
+    "hono-rate-limiter": "^0.5.3",
+    "lucide-react": "^0.577.0",
+    "motion": "^12.38.0",
+    "nanoid": "^5.1.7",
+    "object-to-formdata": "^4.5.1",
+    "rate-limit-redis": "^4.3.1",
+    "react-easy-crop": "^5.5.7",
+    "react-hook-form": "^7.72.0",
+    "sharp": "^0.34.5",
+    "slug": "^11.0.1",
+    "zod": "^4.3.6"
+  }
+}

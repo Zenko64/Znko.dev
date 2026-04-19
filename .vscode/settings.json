@@ -1,0 +1,41 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "sqltools.connections": [
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "siminet-02",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "simi",
+      "group": "simi",
+      "database": "znko",
+      "username": "simi"
+    },
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "Local",
+      "username": "simi",
+      "database": "znko"
+    }
+  ],
+  "todo-tree.tree.showBadges": true,
+  "snyk.advanced.autoSelectOrganization": true,
+  "snyk.advanced.organization": "fc4ec5cb-a361-475a-89a3-f241831e4c9f",
+  "postman.settings.dotenv-detection-notification-visibility": false,
+  "window.autoDetectColorScheme": true,
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true
+  },
+  "vscode-pets.petColor": "magical",
+  "vscode-pets.petSize": "medium",
+  "vscode-pets.petType": "fox",
+  "vscode-pets.theme": "winter",
+  "vscode-pets.throwBallWithMouse": true,
+  "codeQL.createQuery.qlPackLocation": "f:\\Code\\znko.dev"
+}

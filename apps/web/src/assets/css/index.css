@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "./shad.css";
+@import '@vidstack/react/player/styles/default/theme.css';
+@import '@vidstack/react/player/styles/default/layouts/video.css';
+
+body {
+  --border-width: 1.5px;
+  max-width: min(1000px, calc(100vw - 2rem));
+  margin-inline: auto;
+  height: 100svh;
+  border-inline: var(--border-width) dashed var(--secondary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+button {
+  cursor: pointer;
+}
+[data-slot="select-item"] {
+  cursor: pointer;
+}

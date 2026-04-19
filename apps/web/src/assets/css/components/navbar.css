@@ -1,0 +1,65 @@
+:root {
+  --navbar-height: 5rem;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  opacity: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: color-mix(
+    in srgb,
+    var(--color-background) 70%,
+    transparent 100%
+  );
+  opacity: 1;
+  backdrop-filter: blur(10px);
+  margin-top: 1em;
+  margin-inline: calc(50% - 50vw);
+  border-block: var(--border-width) dashed var(--secondary);
+}
+
+nav span > :is(button, [role="button"]) {
+  border-left: var(--border-width) dashed var(--secondary);
+  padding: 1em;
+  height: auto;
+}
+
+nav span > :is(button, [role="button"]):last-child {
+  border-right: 1.5px dashed var(--secondary);
+}
+
+nav span > :is(button, [role="button"]) svg {
+  width: 3em;
+  height: 3em;
+  size: 3em;
+}
+
+nav span:first-child > :is(button, [role="button"]):first-child {
+  border-left: none;
+}
+
+nav span:last-child > :is(button, [role="button"]):last-child {
+  border-right: none;
+}
+
+nav .left {
+  margin-right: auto;
+}
+
+nav .center {
+  margin-inline: auto;
+}
+
+nav .right {
+  margin-left: auto;
+}
+
+nav :is(button, [role="button"]):hover {
+  color: var(--color-primary);
+}

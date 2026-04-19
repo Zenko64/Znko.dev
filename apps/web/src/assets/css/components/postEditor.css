@@ -1,0 +1,197 @@
+.composeCard {
+  padding: 0rem;
+  padding-inline: 0rem;
+  margin-bottom: 0.5rem;
+  gap: 0px;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.composeCard [data-slot="card-content"] {
+  padding: 0px;
+  outline: none;
+  border: none;
+}
+.composeCard [data-slot="card-footer"] {
+  padding: 0.5em;
+  outline: none;
+  border: var(--border-width) solid var(--border);
+  border-top: none;
+  justify-content: space-between;
+}
+
+.editorBar {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  border: var(--border-width) solid var(--border);
+  border-bottom: none;
+}
+
+.editorBar :is(button, [role="button"]) {
+  border: 1px solid var(--border);
+}
+
+.editorBar :is(button, [role="button"]):hover {
+  border-color: var(--color-primary);
+}
+
+.editorBar :is(button, [role="button"]).active,
+.editorBar :is(button, [role="button"]).active svg {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ProseMirror editor area */
+.ProseMirror {
+  outline: none;
+  font-family: var(--font-sans);
+}
+
+/* Border and min-height on the EditorContent wrapper so it encompasses the ImageGrid too */
+.editorWrapper .editorContent {
+  border: var(--border-width) solid var(--border);
+  min-height: 7.5rem;
+}
+
+.editorWrapper .editorContent:focus-within {
+  border-color: var(--color-primary);
+}
+
+.editorWrapper:has(.editorContent:focus-within) .editorBar {
+  border-color: var(--color-primary);
+}
+
+/* Padding only, no border */
+.editorWrapper .ProseMirror {
+  padding: 1rem;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--color-muted-foreground);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror h1:first-child {
+  margin-top: 0px;
+}
+
+/* Post page title & description */
+.post-title {
+  font-size: 2.625rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.post-description {
+  font-size: 1.2rem;
+  color: var(--color-muted-foreground);
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+}
+
+/* Prose content styles */
+.ProseMirror h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-block: 1.25rem 0.5rem;
+}
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-block: 1rem 0.4rem;
+}
+.ProseMirror h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-block: 0.75rem 0.3rem;
+}
+.ProseMirror p {
+  font-size: 1.05rem;
+  margin-block: 0.5rem;
+  line-height: 1.75;
+}
+.ProseMirror strong {
+  color: var(--color-primary);
+}
+.ProseMirror em {
+  color: var(--color-secondary);
+  font-style: italic;
+}
+.ProseMirror code {
+  background: var(--color-muted);
+  padding-inline: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+.ProseMirror pre {
+  background: var(--color-muted);
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-secondary);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+  margin-block: 0.4rem;
+}
+.ProseMirror ul {
+  list-style-type: disc;
+}
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+.ProseMirror li {
+  margin-block: 0.2rem;
+}
+.ProseMirror li::marker {
+  color: var(--color-foreground);
+}
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0.25rem;
+}
+.ProseMirror li[data-type="taskItem"] {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.ProseMirror li[data-type="taskItem"] > label {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: calc(
+    1em * 1.65
+  ); /* match paragraph line-height so checkbox centers on first line */
+}
+.ProseMirror li[data-type="taskItem"] > div {
+  flex: 1;
+}
+.ProseMirror li[data-type="taskItem"] > div > p {
+  margin-block-start: 0;
+}
+.ProseMirror a {
+  cursor: pointer;
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+.ProseMirror blockquote {
+  border-left: var(--border-width) dashed var(--color-primary);
+  padding-left: 1rem;
+  color: var(--color-muted-foreground);
+  margin-inline: 0;
+}
+.ProseMirror hr {
+  border: none;
+  border-top: var(--border-width) solid var(--border);
+  margin-block: 1rem;
+}

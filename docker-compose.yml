@@ -1,0 +1,68 @@
+services:
+  postgres:
+    image: postgres:18.3-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-znko}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-znko}
+      POSTGRES_DB: ${POSTGRES_DB:-znko}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-znko}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:8.4.2-alpine
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      HOST: 0.0.0.0
+      PORT: 4000
+      NODE_ENV: production
+      APP_URL: ${APP_URL}
+      SESSION_SECRET: ${SESSION_SECRET}
+      DATABASE_URL: postgres://${POSTGRES_USER:-znko}:${POSTGRES_PASSWORD:-znko}@postgres:5432/${POSTGRES_DB:-znko}
+      REDIS_URL: redis://redis:6379
+      OIDC_ISSUER: ${OIDC_ISSUER}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID}
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
+      LANYARD_URL: ${LANYARD_URL:-wss://api.lanyard.rest}
+      DISCORD_USER_ID: ${DISCORD_USER_ID:-}
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-}
+    volumes:
+      - backend-data:/app/apps/backend/data
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${WEB_PORT:-8080}:80"
+
+volumes:
+  postgres-data:
+  redis-data:
+  backend-data:

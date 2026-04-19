@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["bun-types"],
+    "strict": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "#core/*": ["./src/core/*.ts"],
+      "#db/*": ["./src/db/*.ts"],
+      "#services/*": ["./src/services/*.ts"],
+      "#controllers/*": ["./src/controllers/*.ts"],
+      "#routes/*": ["./src/routes/*.ts"],
+      "#middleware/*": ["./src/middleware/*.ts"],
+      "#security/*": ["./src/security/*.ts"],
+      "#types/*": ["./src/types/*.ts"],
+      "#functions/*": ["./src/functions/*.ts"],
+      "#/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "../../packages/types/src/index.ts"]
+}

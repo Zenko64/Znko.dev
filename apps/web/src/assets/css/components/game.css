@@ -1,0 +1,52 @@
+.game-details p {
+  font-size: 1em !important;
+}
+
+#game-banner {
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+#game-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(6px);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    black 100%
+  );
+  mask-image: radial-gradient(ellipse at center, transparent 60%, black 100%);
+  pointer-events: none;
+}
+
+#game-card {
+  border-radius: 10px;
+  aspect-ratio: 2 / 3;
+  object-fit: fill;
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-border {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.game-card-gradient-border {
+  border: 2px solid transparent;
+  background-image: conic-gradient(
+    from var(--border-angle),
+    #06b6d4,
+    #00f7ff,
+    #06b6d4
+  );
+  background-origin: border-box;
+  animation: rotate-border 8s linear infinite;
+}
