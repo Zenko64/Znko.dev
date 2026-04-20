@@ -2,7 +2,7 @@ FROM oven/bun:latest
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ffmpeg tini \
+    && apt-get install -y --no-install-recommends ffmpeg libsvtav1-enc0 tini \
     && rm -rf /var/lib/apt/lists/*
 
 COPY package.json bun.lock ./
