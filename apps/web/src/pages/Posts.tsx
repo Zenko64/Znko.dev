@@ -27,6 +27,7 @@ export function Posts() {
     const el = document.getElementById(targetId);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAnimatedTarget(targetId);
   }, [targetId, isLoading]);
 
@@ -80,6 +81,7 @@ export function Posts() {
             initial={{ opacity: 0, height: 0, scale: 0.95, rotateX: -10 }}
             animate={{ opacity: 1, height: "auto", scale: 1, rotateX: 0 }}
             exit={{ opacity: 0, height: 0, scale: 0.95, rotateX: -10 }}
+            className=""
             style={{ overflow: "hidden" }}
           >
             <ComposeCard

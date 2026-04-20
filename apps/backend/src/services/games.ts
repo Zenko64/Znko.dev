@@ -9,7 +9,7 @@
  */
 import { db } from "#db/index";
 import { gameMedia, games, users } from "#db/schema";
-import { and, asc, eq, ilike, max, or } from "drizzle-orm";
+import { and, asc, eq, ilike, max, or, sql } from "drizzle-orm";
 import slug from "slug";
 import z from "zod";
 import { shapes } from "@znko/types";
@@ -113,7 +113,7 @@ async function getGames(
             ilike(g.slug, `%${query}%`),
             ilike(g.title, `%${query}%`),
             ilike(g.description, `%${query}%`),
-            ilike(g.tags, `%${query}%`),
+            ilike(sql`array_to_string(${g.tags}, ' ')`, `%${query}%`),
           ),
         );
       }
