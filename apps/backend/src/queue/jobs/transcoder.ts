@@ -108,16 +108,49 @@ const encoders: Record<string, Encoder> = {
   },
 };
 
-function getBestEncoder(): Promise<Encoder> {
+function getCompiledEncoderKeys(): Promise<string[]> {
   return new Promise((resolve) => {
     ffmpeg.getAvailableEncoders((err, available) => {
-      if (err) return resolve(encoders.libsvtav1);
-      const key = Object.keys(encoders).find((k) => k in available); // Get the key of the first available encoder
-      resolve(key ? encoders[key] : encoders.libsvtav1);
+      if (err) return resolve([]);
+      resolve(Object.keys(encoders).filter((k) => k in available));
     });
   });
 }
 
+/**
+ * Test probe the given encoder.
+ * Why: I ran the software on my server, and while it returns NVENC, the GPU does NOT support av1, causing a failure.
+ * @param encoder
+ * @returns Boolean check
+ */
+async function probeEncoder(encoder: Encoder): Promise<boolean> {
+  const cvIndex = encoder.options.indexOf("-c:v"); // find codec option index
+  const codecOptions =
+    cvIndex !== -1 ? ["-c:v", encoder.options[cvIndex + 1]] : []; // gets the value from cv (actual codec)
+
+  return new Promise((resolve) => {
+    ffmpeg()
+      .input("color=black:s=16x16:r=1")
+      .inputFormat("lavfi")
+      .setDuration(0.1)
+      .addOutputOptions(...codecOptions, "-f", "null")
+      .output("-")
+      .on("end", () => resolve(true))
+      .on("error", () => resolve(false))
+      .run();
+  });
+}
+
+// Find the superior encoder
+async function detectBestEncoder(): Promise<Encoder> {
+  const keys = await getCompiledEncoderKeys();
+  for (const key of keys) {
+    if (await probeEncoder(encoders[key])) return encoders[key];
+  }
+  return encoders.libsvtav1;
+}
+
+const bestEncoder = await detectBestEncoder();
 async function transcode(
   input: string | Readable,
   outputDir: string,
@@ -133,12 +166,11 @@ async function transcode(
     throw new Error(`Output directory already exists: ${outputDir}`);
   }
 
-  const encoder = await getBestEncoder();
   const segmentsDir = path.join(outputDir, "segments");
   await mkdir(segmentsDir, { recursive: true });
 
   const options = [
-    ...encoder.options,
+    ...bestEncoder.options,
     "-hls_segment_filename",
     "segments/seg_%03d.m4s",
     "-hls_fmp4_init_filename",
@@ -146,8 +178,6 @@ async function transcode(
     "-hls_base_url",
     "segments/",
   ];
-
-  
 
   const indexFileOut = path.join(outputDir, "index.m3u8");
 
