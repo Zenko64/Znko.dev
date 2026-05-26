@@ -136,4 +136,4 @@ Vite-built assets are baked into the `web` image, so a rebuild is mandatory afte
 
 ## License
 
-Private / unlicensed — personal project.
+Read LICENSE
